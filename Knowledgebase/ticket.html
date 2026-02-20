@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px; }
+        .form-container { background: white; padding: 30px; border-radius: 8px; max-width: 600px; margin: auto; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .row { display: flex; margin-bottom: 15px; align-items: center; }
+        label { width: 120px; font-weight: bold; font-size: 14px; }
+        input, select, textarea { flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 4px; }
+        .images-box { border: 1px dashed #ccc; height: 80px; display: flex; align-items: center; justify-content: center; background: #fafafa; }
+        .plus-btn { font-size: 30px; color: #2ecc71; cursor: pointer; border: none; background: none; }
+        .btn-group { text-align: right; margin-top: 20px; }
+        button { padding: 10px 25px; margin-left: 10px; cursor: pointer; border-radius: 4px; border: none; }
+        .send-btn { background-color: #eee; color: #333; }
+        .cancel-btn { background-color: #fff; border: 1px solid #ccc; }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Send support request</h2>
+    <div class="row"><label>Subject:</label><input type="text" id="subject" placeholder="Subject of your request"></div>
+    <div class="row"><label>Category:</label>
+        <select id="category">
+            <option>Document Printer</option>
+            <option>Card Printer</option>
+            <option>Phone (voip)</option>
+            <option>Hardware</option>
+            <option>Access control</option>
+            <option>Network</option>
+            <option>Software</option>
+        </select>
+    </div>
+    <div class="row"><label>Body:</label><textarea id="body" rows="6" placeholder="Write about your problem here"></textarea></div>
+    <div class="row"><label>Images:</label><div class="images-box"><button class="plus-btn">+</button></div></div>
+    <hr>
+    <div class="row"><label>First Name:</label><input type="text" id="firstName"></div>
+    <div class="row"><label>Last Name:</label><input type="text" id="lastName"></div>
+    <div class="row"><label>E-Mail:</label><input type="email" id="email"></div>
+    <div class="row"><label>Phone:</label><input type="text" id="phone"></div>
+    
+    <div class="btn-group">
+        <button class="send-btn" onclick="sendTicket()">Send</button>
+        <button class="cancel-btn">Cancel</button>
+    </div>
+</div>
+
+<script>
+    function sendTicket() {
+        // FIXED: The URL must be wrapped in double quotes ""
+        const url = "https://script.google.com/macros/s/AKfycbyYOxLnnI7RMoMOGNudq1NqyYAdblEiYJNeyTw6mTgm2ZriKm9DM2hSKBemxUguIffB/exec"; 
+
+        // Collect data from the form
+        const data = {
+            subject: document.getElementById('subject').value,
+            category: document.getElementById('category').value,
+            body: document.getElementById('body').value,
+            firstName: document.getElementById('firstName').value,
+            lastName: document.getElementById('lastName').value,
+            email: document.getElementById('email').value,
+            phone: document.getElementById('phone').value
+        };
+
+        // Visual feedback so you know the button worked
+        console.log("Sending data to Google...", data);
+        alert("Sending your ticket... please wait a moment.");
+
+        // Send the data to your Google Apps Script
+        fetch(url, {
+            method: 'POST',
+            mode: 'no-cors', // Important for Google Apps Script
+            cache: 'no-cache',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(() => {
+            alert("Success! Your support request has been sent to Mojgan.");
+            // Optional: Clear the form after success
+            document.getElementById('subject').value = "";
+            document.getElementById('body').value = "";
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+            alert("Error sending ticket. Check the F12 console.");
+        });
+    }
+</script>
+
+</body>
+</html>
