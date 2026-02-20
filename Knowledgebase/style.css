@@ -1,0 +1,90 @@
+/* --- High-Contrast Dark Portal Style --- */
+body {
+    background-color: #000000;
+    color: #ffffff;
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* --- THE LOGO SIZE FIX --- */
+/* This tames the giant 1600x1200 SVG */
+.logo, .company-logo {
+    display: block;
+    margin: 40px auto 20px auto;
+    max-width: 250px !important; /* !important forces the size limit */
+    height: auto;
+}
+
+/* --- Header & Typography --- */
+.header-container {
+    text-align: center;
+    border-bottom: 2px solid #E31E24; /* Official Playground Red */
+    padding-bottom: 20px;
+    margin-bottom: 40px;
+}
+
+h1 {
+    color: #E31E24;
+    font-size: 2rem;
+    font-weight: 800;
+    margin: 10px 0;
+}
+
+.subtitle {
+    color: #cccccc;
+    font-size: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* --- Rows & Layout --- */
+.tips-table {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.tip-row {
+    background-color: #111111;
+    border: 1px solid #333333;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 20px;
+    display: flex; /* Aligns icon and text side-by-side */
+    align-items: flex-start; /* Keeps icons at the top of long text */
+    text-align: left;
+    transition: all 0.3s ease;
+}
+
+.tip-link {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.tip-link:hover {
+    color: #E31E24;
+}
+
+/* --- Icon Styling --- */
+.icon {
+    font-size: 2.5rem; /* Makes the emojis much bigger */
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 60px; /* Keeps icons perfectly aligned vertically */
+}
+
+.content h2 {
+    margin: 0 0 8px 0;
+    font-size: 1.4rem;
+    color: #ffffff;
+}
+
+.content p {
+    color: #bbbbbb;
+    margin: 0;
+    line-height: 1.5;
+}
